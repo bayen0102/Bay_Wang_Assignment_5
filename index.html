@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>Three.js Forest World</title>
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+<style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+      background: black;
+    }
+
+    canvas {
+      display: block;
+    }
+
+    #info {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      color: white;
+      background: rgba(0, 0, 0, 0.55);
+      padding: 12px 14px;
+      border-radius: 8px;
+      max-width: 340px;
+      line-height: 1.4;
+      font-size: 14px;
+      z-index: 10;
+    }
+  </style>
+</head>
+<body>
+  <div id="info">
+    <strong>Three.js Forest World</strong><br>
+    Mouse: rotate / zoom / pan<br><br>
+    Wow Feature: I added a glowing floating orb in the center of the world and animated lighting to make the scene feel more alive.
+  </div>
+
+  <script type="module" src="main.js"></script>
+</body>
+</html>
