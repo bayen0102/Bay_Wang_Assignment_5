@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-
+import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
 // Scene, Camera, Renderer
 const scene = new THREE.Scene();
 scene.fog = new THREE.Fog(0x000000, 20, 80);
@@ -29,7 +29,12 @@ controls.enableDamping = true;
 // Loaders
 const textureLoader = new THREE.TextureLoader();
 const gltfLoader = new GLTFLoader();
+const dracoLoader = new DRACOLoader();
+dracoLoader.setDecoderPath('https://www.gstatic.com/draco/v1/decoders/');
+gltfLoader.setDRACOLoader(dracoLoader);
+
 const cubeTextureLoader = new THREE.CubeTextureLoader();
+
 
 // Textures
 const grassTexture = textureLoader.load('./textures/Grass006_1K-JPG_Color.jpg');
@@ -268,10 +273,11 @@ createCone(14, 12, 0xaa8844);
 
 // Load GLB model
 gltfLoader.load(
-  './models/low_poly_tree_scene_free.glb',
-  (gltf) => {
+  './models/low_poly_tree_scene_free-v1.glb',
+    (gltf) => {
+        console.log("MODEL LOADED", gltf);
     const model = gltf.scene;
-    model.position.set(0, 0, -50);
+    model.position.set(0, -1, 0);
     model.scale.set(2.2, 2.2, 2.2);
 
     model.traverse((child) => {
@@ -280,7 +286,7 @@ gltfLoader.load(
         child.receiveShadow = true;
       }
     });
-
+    console.log(model);
     scene.add(model);
   },
   undefined,
